@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Comidas</title>
+    <link rel="icon" href="./img/Logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            margin-left: 20px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .menu li a:hover {
+            color: #007bff;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            list-style: none;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            margin: 0;
+        }
+
+        .dropdown-menu li a {
+            color: #333;
+            padding: 8px 12px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .menu-section {
+            padding: 100px 20px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .menu-section h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-family: 'Brush Script MT', cursive;
+            color: #333;
+        }
+
+        .menu-section .description {
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+            opacity: 0;
+            background-color: #fff;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .menu-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="Pagina/img/434654560_122137684124197393_834710720524175701_n.png" alt="Logo">
+                <span>La Carnicería</span>
+            </div>
+            <ul class="menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="dropdown">
+                    <a href="acerca.html"><i class="fas fa-info-circle"></i> Acerca de</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-utensils"></i> Nuestro Menú <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="comidas.html"><i class="fas fa-hamburger"></i> Comidas</a></li>
+                        <li><a href="bebidas.html"><i class="fas fa-coffee"></i> Bebidas</a></li>
+                        <li><a href="postres.html"><i class="fas fa-ice-cream"></i> Postres</a></li>
+                        <li><a href="demas.html"><i class="fas fa-ellipsis-h"></i> Demás</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-phone"></i> Contáctanos <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.whatsapp.com"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=61557698045451&mibextid=ZbWKwL"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/la_carniceriahn?igsh=ZzhocTNkdGRmdGd0"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://maps.app.goo.gl/SvAJ3yNBmZpZREYcA"><i class="fas fa-map-marker-alt"></i> Ubicación</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-envelope"></i> Formulario <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="reserva_formulario.php"><i class="fas fa-edit"></i> Reserva</a></li>
+                        <li><a href="facturacion.php"><i class="fas fa-user-check"></i> Factura</a></li>
+                        <li><a href="reserva_paginacion.php"><i class="fas fa-user-group"></i> Paginación</a></li>
+                        <li><a href="agregar_platillo.php"><i class="fas fa-utensils"></i> Platillos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu-section">
+        <h2>Las Mejores Bebidas</h2>
+        <p class="description">Aquí las bebidas más refrescantes para los momentos de calor</p>
+
+        <div class="menu-items">
+            <div class="menu-item fade-in">
+                <img src="./img/Limonada.jpg" alt="Limonada">
+                <div class="overlay">
+                    <span class="text">Limonada - L.50.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/JugoArandano.jpeg" alt="Jugo de Arándano">
+                <div class="overlay">
+                    <span class="text">Jugo de Arándano - L55.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/JugoNaranja.jpg" alt="Jugo de Naranja">
+                <div class="overlay">
+                    <span class="text">Jugo de Naranja - L45.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/piña.jpg" alt="Jugo de Piña">
+                <div class="overlay">
+                    <span class="text">Jugo de Piña - L45.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/VinoBlanco.png" alt="Vino Blanco">
+                <div class="overlay">
+                    <span class="text">Vino Blanco - L100.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/VinodeUva.jpg" alt="Vino de Uva">
+                <div class="overlay">
+                    <span class="text">Vino de Uva - L110.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/CervezaGolden.jpg" alt="Cerveza Golden">
+                <div class="overlay">
+                    <span class="text">Cerveza Golden - L75.00</span>
+                </div>
+            </div>
+            <div class="menu-item fade-in">
+                <img src="./img/CervezaArtesanal.jpg" alt="Cerveza Artesanal">
+                <div class="overlay">
+                    <span class="text">Cerveza Artesanal - L90.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Asegúrate de que todas las imágenes tengan la clase .fade-in al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuItems = document.querySelectorAll(".menu-item");
+            menuItems.forEach(item => {
+                item.classList.add("fade-in");
+            });
+        });
+    </script>
+</body>
+</html>
